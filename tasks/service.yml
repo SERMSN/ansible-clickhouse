@@ -1,0 +1,13 @@
+- name: CLICKHOUSE | Started service
+  become: true
+  ansible.builtin.systemd:
+    name: clickhouse-server
+    state: started
+    daemon_reload: true
+  when: ansible_facts.virtualization_type != "docker" and ansible_facts.virtualization_type != "podman"
+
+- name: CLICKHOUSE | Started clickhouse-server daemon for containers
+  become: true
+  ansible.builtin.command: clickhouse-server --daemon
+  changed_when: false
+  when: ansible_facts.virtualization_type == "docker" or ansible_facts.virtualization_type == "podman"

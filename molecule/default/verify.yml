@@ -1,0 +1,21 @@
+- name: Verify
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: Get Clickhouse version
+      ansible.builtin.command: "clickhouse-server -V"
+      changed_when: false
+      register: clickhouse_version
+    - name: Assert Clickhouse instalation
+      ansible.builtin.assert:
+        that: "'{{ clickhouse_version.rc }}' == '0'"
+
+    - name: Check database and table in Clickhouse
+      ansible.builtin.command: clickhouse-client -q 'CREATE TABLE logs.file ("file" String, "host" String, "message" String, "timestamp" DateTime) Engine=Log;'
+      register: check_table
+      changed_when: false
+      failed_when: check_table.rc != 0 and check_table.rc != 57
+    - name: Assert Lighthouse instalation
+      ansible.builtin.assert:
+        that: "'{{ check_table.rc }}' == '57'"

@@ -1,0 +1,9 @@
+---
+# vars file for roles/clickhause
+clickhouse_packages:
+  - clickhouse-common-static
+  - clickhouse-client
+  - clickhouse-server
+
+clickhouse_config: /etc/clickhouse-server/config.xml
+clickhouse_users: /etc/clickhouse-server/users.xml

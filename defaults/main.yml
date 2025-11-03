@@ -1,0 +1,6 @@
+---
+# defaults file for roles/clickhause
+clickhouse_ver: "22.8.5.29"
+clickhouse_auth:
+  user: logger
+  password: logger
