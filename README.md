@@ -48,4 +48,4 @@ This project is licensed under MIT License. See [LICENSE](/LICENSE) for more det
 
 [ClickHouse](https://clickhouse.com/docs/en/index.html) by [ClickHouse, Inc.](https://clickhouse.com/company/).
 
-Role by `InfernoFeniks`.
+Role by `WRCS`.
